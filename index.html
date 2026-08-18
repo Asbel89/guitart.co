@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guitart & Co. | Salão de Beleza em Guarujá</title>
+  <meta name="description" content="Um novo conceito de beleza e sofisticação em Guarujá. Corte, cor, iluminação, nails, sobrancelhas, cílios e make. Agende seu horário!">
+  <meta name="referrer" content="no-referrer">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--rose:#D4789C;--rose-light:#E8A0BF;--rose-pale:#F2C4D6;--rose-bg:#FDF0F5;--blush:#F9E4EE;--dark:#2D2226;--darker:#1E1619;--cream:#FFFAFC;--white:#fff;--text:#3D2E35;--text-light:#8A7580}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden}
+    h1,h2,h3,h4{font-family:'Playfair Display',serif}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(45,34,38,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:0 2rem;transition:all .3s}
+    nav.scrolled{box-shadow:0 2px 30px rgba(0,0,0,.25)}
+    .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+    .nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+    .nav-logo{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--rose-light);transition:transform .3s}
+    .nav-brand:hover .nav-logo{transform:scale(1.08)}
+    .nav-brand-text{color:var(--white);font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;letter-spacing:.5px}
+    .nav-brand-text span{color:var(--rose-light)}
+    .nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
+    .nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.85rem;font-weight:400;letter-spacing:1px;text-transform:uppercase;transition:color .3s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--rose-light);transition:width .3s}
+    .nav-links a:hover{color:var(--rose-light)}
+    .nav-links a:hover::after{width:100%}
+    .nav-cta{background:var(--rose)!important;color:var(--white)!important;padding:8px 20px;border-radius:30px;font-weight:500!important;letter-spacing:.5px!important;transition:all .3s!important}
+    .nav-cta:hover{background:var(--rose-light)!important;transform:translateY(-1px)}
+    .nav-cta::after{display:none!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px}
+    .hamburger span{width:25px;height:2px;background:var(--white);transition:all .3s}
+    .mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(45,34,38,.98);backdrop-filter:blur(20px);padding:2rem;flex-direction:column;gap:1.5rem;align-items:center;border-top:1px solid rgba(255,255,255,.1)}
+    .mobile-menu.active{display:flex}
+    .mobile-menu a{color:rgba(255,255,255,.85);text-decoration:none;font-size:1rem;letter-spacing:1px;text-transform:uppercase;padding:.5rem 0;transition:color .3s}
+    .mobile-menu a:hover{color:var(--rose-light)}
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,rgba(45,34,38,.93),rgba(60,40,50,.88));padding:2rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-40%;right:-15%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,120,156,.12) 0%,transparent 70%);border-radius:50%}
+    .hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(232,160,191,.08) 0%,transparent 70%);border-radius:50%}
+    .hero-content{position:relative;z-index:1;max-width:700px}
+    .hero-badge{display:inline-block;border:1px solid var(--rose-light);color:var(--rose-light);padding:6px 20px;border-radius:30px;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:2rem;animation:fadeInUp .8s}
+    .hero h1{color:var(--white);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:400;line-height:1.15;margin-bottom:1.5rem;animation:fadeInUp .8s .2s both}
+    .hero h1 em{font-style:italic;color:var(--rose-light)}
+    .hero-subtitle{color:rgba(255,255,255,.65);font-size:1.05rem;line-height:1.8;font-weight:300;margin-bottom:2.5rem;animation:fadeInUp .8s .4s both}
+    .hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeInUp .8s .6s both}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;text-decoration:none;font-size:.9rem;font-weight:500;letter-spacing:.5px;transition:all .3s;border:none;cursor:pointer}
+    .btn-primary{background:var(--rose);color:var(--white)}
+    .btn-primary:hover{background:var(--rose-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,120,156,.35)}
+    .btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.3)}
+    .btn-outline:hover{border-color:var(--rose-light);color:var(--rose-light);transform:translateY(-2px)}
+    .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);animation:bounce 2s infinite}
+    .scroll-indicator svg{width:24px;height:24px;stroke:rgba(255,255,255,.4)}
+    .promo-banner{background:linear-gradient(135deg,var(--blush),var(--rose-bg));padding:3.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+    .promo-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(212,120,156,.04) 30px,rgba(212,120,156,.04) 60px)}
+    .promo-inner{position:relative;z-index:1;max-width:800px;margin:0 auto}
+    .promo-tag{display:inline-block;background:var(--rose);color:var(--white);padding:5px 18px;border-radius:20px;font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem}
+    .promo-banner h2{color:var(--dark);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:400;margin-bottom:.5rem}
+    .promo-price{color:var(--rose);font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin:.5rem 0 1rem}
+    .promo-desc{color:var(--text-light);font-size:.95rem;font-weight:300;margin-bottom:1.5rem}
+    .about{padding:6rem 2rem;background:var(--cream)}
+    .about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .section-label{display:inline-block;color:var(--rose);font-size:.75rem;letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:1rem}
+    .about-text h2{font-size:clamp(2rem,4vw,3rem);color:var(--dark);font-weight:400;line-height:1.2;margin-bottom:1.5rem}
+    .about-text h2 em{font-style:italic;color:var(--rose)}
+    .about-text p{color:var(--text-light);line-height:1.9;font-size:.95rem;font-weight:300;margin-bottom:1rem}
+    .about-stats{display:flex;gap:2.5rem;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(0,0,0,.06)}
+    .stat-number{font-family:'Playfair Display',serif;font-size:2rem;color:var(--rose);font-weight:600}
+    .stat-label{color:var(--text-light);font-size:.8rem;letter-spacing:1px;text-transform:uppercase;margin-top:.25rem}
+    .hero-video-bg{display:none}
+    .about-video{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.12);background:var(--dark);aspect-ratio:9/16;max-height:550px;margin:0 auto}
+    .about-video video{width:100%;height:100%;object-fit:cover}
+    .catalog{padding:6rem 2rem;background:var(--white)}
+    .catalog-inner{max-width:1100px;margin:0 auto}
+    .section-header{text-align:center;margin-bottom:4rem}
+    .section-header h2{font-size:clamp(2rem,4vw,3rem);color:var(--dark);font-weight:400;margin-bottom:.5rem}
+    .section-header h2 em{font-style:italic;color:var(--rose)}
+    .section-header p{color:var(--text-light);font-size:.95rem;font-weight:300;max-width:500px;margin:0 auto}
+    .catalog-divider{width:60px;height:2px;background:linear-gradient(90deg,var(--rose-pale),var(--rose),var(--rose-pale));margin:0 auto 1rem;border-radius:2px}
+    .catalog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+    .catalog-card{background:var(--cream);border-radius:20px;padding:2rem 1.8rem;transition:all .4s;border:1px solid rgba(212,120,156,.08);position:relative;overflow:hidden}
+    .catalog-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rose-pale),var(--rose),var(--rose-pale));opacity:0;transition:opacity .4s}
+    .catalog-card:hover{transform:translateY(-4px);box-shadow:0 15px 40px rgba(212,120,156,.1);border-color:rgba(212,120,156,.15)}
+    .catalog-card:hover::before{opacity:1}
+    .catalog-card-icon{font-size:2rem;margin-bottom:1rem}
+    .catalog-card h3{font-size:1.1rem;color:var(--dark);font-weight:600;margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid rgba(212,120,156,.1)}
+    .catalog-item{display:flex;justify-content:space-between;align-items:baseline;padding:.6rem 0;border-bottom:1px dotted rgba(212,120,156,.1)}
+    .catalog-item:last-child{border-bottom:none}
+    .catalog-item-name{color:var(--text);font-size:.88rem;font-weight:400}
+    .catalog-item-price{color:var(--rose);font-weight:500;font-size:.88rem;white-space:nowrap;margin-left:.5rem}
+    .catalog-item-price.consultar{color:var(--text-light);font-style:italic;font-weight:400}
+    .services{padding:6rem 2rem;background:var(--rose-bg)}
+    .services-inner{max-width:1100px;margin:0 auto}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+    .service-card{background:var(--white);border-radius:16px;padding:2.5rem 2rem;text-align:center;transition:all .4s;position:relative;overflow:hidden;border:1px solid rgba(212,120,156,.06)}
+    .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rose-pale),var(--rose),var(--rose-pale));transform:scaleX(0);transition:transform .4s}
+    .service-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(212,120,156,.1)}
+    .service-card:hover::before{transform:scaleX(1)}
+    .service-icon{font-size:2.5rem;margin-bottom:1.2rem}
+    .service-card h3{font-size:1.15rem;color:var(--dark);font-weight:600;margin-bottom:.75rem}
+    .service-card p{color:var(--text-light);font-size:.85rem;line-height:1.7;font-weight:300}
+    .schedule{padding:6rem 2rem;background:linear-gradient(135deg,var(--dark),#3a2530);text-align:center;position:relative;overflow:hidden}
+    .schedule::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(212,120,156,.08) 0%,transparent 70%);border-radius:50%}
+    .schedule-inner{position:relative;z-index:1;max-width:600px;margin:0 auto}
+    .schedule h2{color:var(--white);font-size:clamp(2rem,4vw,3rem);font-weight:400;margin-bottom:1rem}
+    .schedule h2 em{font-style:italic;color:var(--rose-light)}
+    .schedule p{color:rgba(255,255,255,.6);font-size:.95rem;font-weight:300;line-height:1.8;margin-bottom:.5rem}
+    .schedule-hours{display:inline-flex;align-items:center;gap:10px;background:rgba(212,120,156,.12);border:1px solid rgba(212,120,156,.25);border-radius:50px;padding:12px 28px;margin:2rem 0;color:var(--rose-light);font-size:.9rem;font-weight:400;letter-spacing:.5px}
+    .schedule .btn{margin-top:.5rem}
+    footer{background:var(--darker);padding:3rem 2rem 1.5rem}
+    .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+    .footer-brand{display:flex;align-items:center;gap:12px}
+    .footer-brand img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid rgba(212,120,156,.3)}
+    .footer-brand span{color:var(--white);font-family:'Playfair Display',serif;font-size:1rem}
+    .footer-brand span em{color:var(--rose-light);font-style:italic}
+    .footer-links{display:flex;gap:2rem;list-style:none}
+    .footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;transition:color .3s}
+    .footer-links a:hover{color:var(--rose-light)}
+    .footer-bottom{max-width:1100px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);text-align:center;color:rgba(255,255,255,.3);font-size:.75rem;letter-spacing:1px}
+    .whatsapp-fab{position:fixed;bottom:2rem;right:2rem;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:999;transition:all .3s;animation:pulse-green 2s infinite}
+    .whatsapp-fab:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.5)}
+    .whatsapp-fab svg{width:30px;height:30px;fill:white}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes bounce{0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0)}40%{transform:translateX(-50%) translateY(-10px)}60%{transform:translateX(-50%) translateY(-5px)}}
+    @keyframes pulse-green{0%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,.6)}100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}}
+    .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}.hero-video-bg{display:block;position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden}.hero-video-bg iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100vw;height:177.78vw;min-height:100%;min-width:56.25vh;border:none;pointer-events:none}.hero-video-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(45,34,38,.75) 0%,rgba(45,34,38,.55) 50%,rgba(45,34,38,.85) 100%);z-index:1}.hero-content{position:relative;z-index:2}.about-video{display:none}.catalog-grid{grid-template-columns:1fr}.services-grid{grid-template-columns:1fr 1fr}.footer-inner{flex-direction:column;text-align:center}.footer-links{flex-wrap:wrap;justify-content:center}}
+    @media(max-width:480px){.services-grid{grid-template-columns:1fr}.hero-buttons{flex-direction:column;align-items:center}.about-stats{flex-direction:column;align-items:center;gap:1.5rem}}
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="logo.jpg" alt="Guitart & Co." class="nav-logo">
+        <span class="nav-brand-text">Guitart <span>&</span> Co.</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#catalogo">Catalogo</a></li>
+        <li><a href="#servicos">Servicos</a></li>
+        <li><a href="#contato">Contato</a></li>
+        <li><a href="https://wa.me/5513997996300" target="_blank" class="nav-cta">Agendar</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#sobre" onclick="closeMenu()">Sobre</a>
+      <a href="#catalogo" onclick="closeMenu()">Catalogo</a>
+      <a href="#servicos" onclick="closeMenu()">Servicos</a>
+      <a href="#contato" onclick="closeMenu()">Contato</a>
+      <a href="https://wa.me/5513997996300" target="_blank" class="nav-cta" onclick="closeMenu()">Agendar</a>
+    </div>
+  </nav>
+  <section class="hero" id="home">
+    <div class="hero-video-bg">
+      <video autoplay muted loop playsinline src="reel.mp4"></video>
+    </div>
+    <div class="hero-content">
+      <span class="hero-badge">Guaruja, SP</span>
+      <h1>Um novo conceito de <em>beleza</em> e sofisticacao</h1>
+      <p class="hero-subtitle">Corte &bull; Cor &bull; Iluminacao &bull; Nails &bull; Sobrancelhas &bull; Cilios &bull; Make<br>Cada atendimento e individualizado, com foco em resultados naturais, seguranca e acolhimento.</p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/5513997996300?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio" target="_blank" class="btn btn-primary"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Agendar pelo WhatsApp</a>
+        <a href="#catalogo" class="btn btn-outline">Ver Catalogo</a>
+      </div>
+    </div>
+    <div class="scroll-indicator"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+  </section>
+  <section class="promo-banner" id="promo">
+    <div class="promo-inner reveal">
+      <span class="promo-tag">Oferta Especial</span>
+      <h2>Hidratacao + Corte + Escova</h2>
+      <div class="promo-price">R$ 150,00</div>
+      <p class="promo-desc">Aproveite essa condicao especial. Agende seu horario!</p>
+      <a href="https://wa.me/5513997996300?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20a%20promo%C3%A7%C3%A3o%20de%20Hidrata%C3%A7%C3%A3o%20%2B%20Corte%20%2B%20Escova" target="_blank" class="btn btn-primary" style="color:var(--white)"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Aproveitar Oferta</a>
+    </div>
+  </section>
+  <section class="about" id="sobre">
+    <div class="about-inner">
+      <div class="about-text reveal">
+        <span class="section-label">Conheca-nos</span>
+        <h2>Um espaco preparado com <em>carinho</em></h2>
+        <p>Sera um prazer receber voce! Aqui, cada atendimento e individualizado, com foco em resultados naturais, seguranca e muito acolhimento.</p>
+        <p>Cuidamos da sua beleza, autoestima e bem-estar com profissionais qualificados e apaixonados pelo que fazem.</p>
+        <div class="about-stats">
+          <div><div class="stat-number">93+</div><div class="stat-label">Posts</div></div>
+          <div><div class="stat-number">2.6K</div><div class="stat-label">Seguidores</div></div>
+          <div><div class="stat-number">5&#9733;</div><div class="stat-label">Avaliacao</div></div>
+        </div>
+      </div>
+      <div class="about-video reveal">
+        <video autoplay muted loop playsinline src="reel.mp4"></video>
+      </div>
+    </div>
+  </section>  <section class="catalog" id="catalogo">
+    <div class="catalog-inner">
+      <div class="section-header reveal">
+        <span class="catalog-divider"></span>
+        <span class="section-label">Catalogo de Servicos</span>
+        <h2>Conheca nossos <em>servicos</em></h2>
+        <p>Qualidade, cuidado e preco justo em cada atendimento.</p>
+      </div>
+      <div class="catalog-grid">
+        <div class="catalog-card reveal">
+          <div class="catalog-card-icon">&#128136;</div>
+          <h3>Pes & Maos / Sobrancelhas</h3>
+          <div class="catalog-item"><span class="catalog-item-name">Manicure</span><span class="catalog-item-price">R$ 50,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Pedicure</span><span class="catalog-item-price">R$ 60,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Pe e Mao</span><span class="catalog-item-price">R$ 85,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Alongamentos</span><span class="catalog-item-price consultar">Consultar</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Design sem Henna</span><span class="catalog-item-price">R$ 60,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Design com Henna</span><span class="catalog-item-price">R$ 80,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Brow Lamination</span><span class="catalog-item-price">R$ 160,00</span></div>
+        </div>
+        <div class="catalog-card reveal">
+          <div class="catalog-card-icon">&#10024;</div>
+          <h3>Estetica</h3>
+          <div class="catalog-item"><span class="catalog-item-name">Cilios</span><span class="catalog-item-price consultar">Consultar</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Harmonizacao Facial</span><span class="catalog-item-price consultar">Consultar</span></div>
+        </div>
+        <div class="catalog-card reveal">
+          <div class="catalog-card-icon">&#128135;&#8205;&#9792;&#65039;</div>
+          <h3>Cabelos</h3>
+          <div class="catalog-item"><span class="catalog-item-name">Retoque Raiz</span><span class="catalog-item-price">A partir de R$ 170,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Coloracao Inteiro</span><span class="catalog-item-price">A partir de R$ 280,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Tratamentos</span><span class="catalog-item-price">A partir de R$ 170,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Alisamentos</span><span class="catalog-item-price">A partir de R$ 300,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Cauterizacao / Botox</span><span class="catalog-item-price">A partir de R$ 300,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Escova</span><span class="catalog-item-price">A partir de R$ 80,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Mechas</span><span class="catalog-item-price">A partir de R$ 750,00</span></div>
+        </div>
+        <div class="catalog-card reveal">
+          <div class="catalog-card-icon">&#9986;&#65039;</div>
+          <h3>Cortes</h3>
+          <div class="catalog-item"><span class="catalog-item-name">Corte Feminino</span><span class="catalog-item-price">R$ 120,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Corte e Escova</span><span class="catalog-item-price">A partir de R$ 200,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Corte Masculino</span><span class="catalog-item-price">R$ 85,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Corte e Barba</span><span class="catalog-item-price">R$ 120,00</span></div>
+          <div class="catalog-item"><span class="catalog-item-name">Corte Infantil</span><span class="catalog-item-price">R$ 85,00</span></div>
+        </div>
+        <div class="catalog-card reveal">
+          <div class="catalog-card-icon">&#128132;</div>
+          <h3>Maquiagem</h3>
+          <div class="catalog-item"><span class="catalog-item-name">Maquiagem Profissional</span><span class="catalog-item-price">A partir de R$ 200,00</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="services" id="servicos">
+    <div class="services-inner">
+      <div class="section-header reveal">
+        <span class="section-label">Por que escolher-nos</span>
+        <h2>Cuidamos de cada <em>detalhe</em></h2>
+        <p>Profissionais qualificados e apaixonados por transformar o seu visual.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal"><div class="service-icon">&#128135;&#8205;&#9792;&#65039;</div><h3>Corte</h3><p>Cortes modernos e classicos, masculinos e femininos, personalizados para cada tipo de rosto e estilo.</p></div>
+        <div class="service-card reveal"><div class="service-icon">&#127912;</div><h3>Cor</h3><p>Coloracao, mechas, balayage e tecnicas modernas para realcar sua beleza com naturalidade.</p></div>
+        <div class="service-card reveal"><div class="service-icon">&#10024;</div><h3>Iluminacao</h3><p>Tecnicas de iluminacao que trazem brilho, movimento e dimensao aos seus fios.</p></div>
+        <div class="service-card reveal"><div class="service-icon">&#128136;</div><h3>Nails</h3><p>Manicure, pedicure, gel, acrilico e nail art com acabamento impecavel.</p></div>
+        <div class="service-card reveal"><div class="service-icon">&#128064;&#65039;</div><h3>Sobrancelhas</h3><p>Design, henna, fio a fio e microblading para sobrancelhas perfeitas e expressivas.</p></div>
+        <div class="service-card reveal"><div class="service-icon">&#128139;</div><h3>Cilios & Make</h3><p>Alongamento de cilios, volume russo, volume fio a fio e maquiagem profissional.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="schedule" id="contato">
+    <div class="schedule-inner reveal">
+      <span class="section-label" style="color:var(--rose-light)">Agende seu Horario</span>
+      <h2>Sera um prazer <em>receber</em> voce</h2>
+      <p>Entre em contato pelo WhatsApp e agende sua avaliacao. Estamos prontos para cuidar de voce!</p>
+      <div class="schedule-hours">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Terca a Sab &mdash; 10:00 as 19:00
+      </div><br>
+      <a href="https://wa.me/5513997996300?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20no%20Guitart%20%26%20Co." target="_blank" class="btn btn-primary" style="margin-top:1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Agendar pelo WhatsApp</a>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.jpg" alt="Guitart & Co.">
+        <span>Guitart <em>&</em> Co.</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#catalogo">Catalogo</a></li>
+        <li><a href="#servicos">Servicos</a></li>
+        <li><a href="https://wa.me/5513997996300" target="_blank">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Guitart & Co. &mdash; Salao de Beleza em Guaruja, SP. Todos os direitos reservados.</div>
+  </footer>
+  <a href="https://wa.me/5513997996300?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio" target="_blank" class="whatsapp-fab" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <script>
+    const navbar=document.getElementById('navbar');
+    window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>50)});
+    const hamburger=document.getElementById('hamburger');
+    const mobileMenu=document.getElementById('mobileMenu');
+    hamburger.addEventListener('click',()=>{mobileMenu.classList.toggle('active')});
+    function closeMenu(){mobileMenu.classList.remove('active')}
+    const revealElements=document.querySelectorAll('.reveal');
+    const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible')}})},{threshold:.15});
+    revealElements.forEach(el=>revealObserver.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+  </script>
+</body>
+</html>
